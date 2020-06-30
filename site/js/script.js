@@ -13,9 +13,10 @@ $(function () { // same as document.addeventlistener("DOMContentLoaded",........
 
 // Dynamic page for menu-content
 (function (global) {
-var bc = {};
-var homeHtml = "snippet/home-snipper.html"
+var dc = {};
+var homeHtml = "snippet/home-snippet.html"
 
+// Convenience function for inserting innerHtml for 'select
 var insertHtml = function (selector, html) {
     var targetElem = document.querySelector(selector);
     targetElem.innerHTML= html;
@@ -23,7 +24,7 @@ var insertHtml = function (selector, html) {
 
 // show loading icon element identified by 'selector'.
 var showloading = function (selector) {
-    var html = "<div class='text-center >";
+    var html = "<div class='text-center' >";
     html += "<img src= 'images/ajax-loader.gif'> </div>";
     insertHtml(selector, html);
 }; 
@@ -33,16 +34,13 @@ function (event) {
     // on firstload show home view
     showloading("#main-content");
     $ajaxUtils.sendGetRequest(homeHtml, 
-        function (responseText) {
+        function (request) {// This is the request handler
             document.querySelector("#main-content")
-            .innerHTML= responseText;
+            .innerHTML= request.responseText;
         },
         false);
 });
 
 
-
-
-// Convenience function for inserting innerHtml for 'select
-global.$bc = bc;
+global.$dc = dc;
 })(window);
