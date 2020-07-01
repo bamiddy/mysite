@@ -6,6 +6,7 @@ $(function () { // same as document.addeventlistener("DOMContentLoaded",........
             var screenWidth = window.innerWidth;
             if (screenWidth < 768){
                 $("#collapsable-nav").collapse("hide")
+                   
             }
        
         });
@@ -13,7 +14,7 @@ $(function () { // same as document.addeventlistener("DOMContentLoaded",........
 
 // Dynamic page for menu-content
 (function (global) {
-var dc = {};
+var dc = {}; // it has no function for now
 var homeHtml = "snippet/home-snippet.html"
 
 // Convenience function for inserting innerHtml for 'select
@@ -34,9 +35,9 @@ function (event) {
     // on firstload show home view
     showloading("#main-content");
     $ajaxUtils.sendGetRequest(homeHtml, 
-        function (request) {// This is the request handler
+        function (res) {// This is the request handler
             document.querySelector("#main-content")
-            .innerHTML= request.responseText;
+            .innerHTML= res; 
         },
         false);
 });
